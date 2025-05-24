@@ -1,0 +1,198 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f9fafb;
+  color: #1f2937;
+  padding: 40px;
+  line-height: 1.6;
+}
+
+h1 {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: #111827;
+}
+
+form {
+  background: #ffffff;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin-bottom: 30px;
+  max-width: 500px;
+}
+
+input {
+  width: calc(100% - 12px);
+  margin-bottom: 15px;
+  padding: 10px;
+  font-size: 1rem;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  transition: border 0.2s ease-in-out;
+}
+
+input:focus {
+  border-color: #2563eb;
+  outline: none;
+}
+
+button {
+  background-color: #2563eb;
+  color: #ffffff;
+  padding: 10px 20px;
+  font-size: 1rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+}
+
+button:hover {
+  background-color: #1d4ed8;
+}
+
+#inventoryList {
+  list-style-type: none;
+  padding: 0;
+  max-width: 600px;
+}
+
+#inventoryList li {
+  background-color: #ffffff;
+  margin-bottom: 12px;
+  padding: 15px 20px;
+  border-left: 6px solid #2563eb;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .button-group {
+  display: flex;
+  gap: 10px;
+}
+
+.btn {
+  padding: 6px 12px;
+  font-size: 0.875rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+}
+
+/* Update Button */
+.btn-update {
+  background-color: #10b981;
+  color: #ffffff;
+}
+.btn-update:hover {
+  background-color: #059669;
+}
+
+/* Delete Button */
+.btn-delete {
+  background-color: #ef4444;
+  color: #ffffff;
+}
+.btn-delete:hover {
+  background-color: #dc2626;
+}
+
+}
+
+#inventoryList li span {
+  font-weight: 500;
+}
+
+#inventoryList li button {
+  background-color: #ef4444;
+  border: none;
+  color: white;
+  padding: 6px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.875rem;
+}
+
+#inventoryList li button:hover {
+  background-color: #dc2626;
+}
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
+}
+
+.modal.hidden {
+  display: none;
+}
+
+.modal-content {
+  background-color: #ffffff;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  width: 100%;
+  max-width: 400px;
+}
+
+.modal-content h2 {
+  margin-bottom: 20px;
+  color: #111827;
+}
+
+.modal-content input {
+  width: 100%;
+  margin-bottom: 15px;
+  padding: 10px;
+  font-size: 1rem;
+  border-radius: 8px;
+  border: 1px solid #d1d5db;
+}
+
+.modal-content button {
+  margin-right: 10px;
+}
+
+
+@media (max-width: 600px) {
+  body {
+    padding: 20px;
+  }
+
+  form, .modal-content, #inventoryList {
+    width: 100%;
+  }
+
+  #inventoryList li {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .button-group {
+    width: 100%;
+    justify-content: flex-end;
+  }
+
+  .btn {
+    width: 48%;
+  }
+}

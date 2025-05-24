@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Inventory Management</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <h1>Inventory</h1>
+  <form id="itemForm">
+    <input type="text" id="name" placeholder="Item Name" required>
+    <input type="number" id="quantity" placeholder="Quantity" required>
+    <input type="number" id="price" placeholder="Price" required>
+    <button type="submit">Add Item</button>
+  </form>
+  <ul id="inventoryList"></ul>
+  <script src="js/main.js"></script>
+
+  <!-- Update Item Modal -->
+<div id="updateModal" class="modal hidden">
+  <div class="modal-content">
+    <h2>Update Item</h2>
+    <form id="updateForm">
+      <input type="text" id="updateName" placeholder="Item Name" required />
+      <input type="number" id="updateQuantity" placeholder="Quantity" required />
+      <input type="number" id="updatePrice" placeholder="Price" required />
+      <input type="hidden" id="updateId" />
+      <button type="submit">Save Changes</button>
+      <button type="button" id="cancelUpdate">Cancel</button>
+    </form>
+  </div>
+</div>
+
+</body>
+</html>
