@@ -74,39 +74,6 @@ button:hover {
   display: flex;
   justify-content: space-between;
   align-items: center;
-
-  .button-group {
-  display: flex;
-  gap: 10px;
-}
-
-.btn {
-  padding: 6px 12px;
-  font-size: 0.875rem;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: background-color 0.2s ease-in-out;
-}
-
-/* Update Button */
-.btn-update {
-  background-color: #10b981;
-  color: #ffffff;
-}
-.btn-update:hover {
-  background-color: #059669;
-}
-
-/* Delete Button */
-.btn-delete {
-  background-color: #ef4444;
-  color: #ffffff;
-}
-.btn-delete:hover {
-  background-color: #dc2626;
-}
-
 }
 
 #inventoryList li span {
@@ -124,6 +91,38 @@ button:hover {
 }
 
 #inventoryList li button:hover {
+  background-color: #dc2626;
+}
+
+.button-group {
+  display: flex;
+  gap: 10px;
+}
+
+.btn {
+  padding: 6px 12px;
+  font-size: 0.875rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.btn-update {
+  background-color: #10b981;
+  color: #ffffff;
+}
+
+.btn-update:hover {
+  background-color: #059669;
+}
+
+.btn-delete {
+  background-color: #ef4444;
+  color: #ffffff;
+}
+
+.btn-delete:hover {
   background-color: #dc2626;
 }
 
@@ -171,13 +170,14 @@ button:hover {
   margin-right: 10px;
 }
 
-
 @media (max-width: 600px) {
   body {
     padding: 20px;
   }
 
-  form, .modal-content, #inventoryList {
+  form,
+  .modal-content,
+  #inventoryList {
     width: 100%;
   }
 

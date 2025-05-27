@@ -1,15 +1,16 @@
 const form = document.getElementById('itemForm');
 const list = document.getElementById('inventoryList');
 const updateModal = document.getElementById('updateModal');
-const updateForm = document.getElementById('updateForm');
 const cancelUpdate = document.getElementById('cancelUpdate');
+const saveUpdate = document.getElementById('saveUpdate');
 
-// Handle new item form submission
 form.addEventListener('submit', async (e) => {
   e.preventDefault();
-  const name = document.getElementById('name').value;
-  const quantity = document.getElementById('quantity').value;
-  const price = document.getElementById('price').value;
+  const name = document.getElementById('name').value.trim();
+  const quantity = document.getElementById('quantity').value.trim();
+  const price = document.getElementById('price').value.trim();
+
+  if (!name || !quantity || !price) return alert("Please fill all fields.");
 
   const res = await fetch('/api/items', {
     method: 'POST',
@@ -22,25 +23,23 @@ form.addEventListener('submit', async (e) => {
   form.reset();
 });
 
-// Load items on page load
 window.onload = async () => {
   const res = await fetch('/api/items');
   const items = await res.json();
+  list.innerHTML = ''; // Clear list to avoid duplicates
   items.forEach(addItemToList);
 };
 
-// Add item to list with Update/Delete buttons
 function addItemToList(item) {
   const li = document.createElement('li');
   li.innerHTML = `
-    <span>${item.name} - Qty: ${item.quantity}, $${item.price}</span>
+    <span><strong>${item.name}</strong> - Qty: ${item.quantity}, $${item.price}</span>
     <div class="button-group">
       <button class="btn btn-update">Update</button>
       <button class="btn btn-delete">Delete</button>
     </div>
   `;
 
-  // Delete logic
   li.querySelector('.btn-delete').addEventListener('click', async () => {
     const confirmDelete = confirm(`Delete "${item.name}"?`);
     if (!confirmDelete) return;
@@ -49,32 +48,38 @@ function addItemToList(item) {
     li.remove();
   });
 
-  // Update logic
   li.querySelector('.btn-update').addEventListener('click', () => {
     document.getElementById('updateId').value = item._id;
     document.getElementById('updateName').value = item.name;
     document.getElementById('updateQuantity').value = item.quantity;
     document.getElementById('updatePrice').value = item.price;
+    document.getElementById('updateCategory').value = item.category || '';
+
     updateModal.classList.remove('hidden');
   });
 
   list.appendChild(li);
 }
 
-// Modal close button
+// Cancel update modal
 cancelUpdate.addEventListener('click', () => {
   updateModal.classList.add('hidden');
+  clearUpdateForm();
 });
 
-// Handle update form submission
-updateForm.addEventListener('submit', async (e) => {
-  e.preventDefault();
+// Save update modal
+saveUpdate.addEventListener('click', async () => {
   const id = document.getElementById('updateId').value;
   const updatedItem = {
-    name: document.getElementById('updateName').value,
-    quantity: document.getElementById('updateQuantity').value,
-    price: document.getElementById('updatePrice').value,
+    name: document.getElementById('updateName').value.trim(),
+    quantity: document.getElementById('updateQuantity').value.trim(),
+    price: document.getElementById('updatePrice').value.trim(),
+    category: document.getElementById('updateCategory').value.trim(),
   };
+
+  if (!updatedItem.name || !updatedItem.quantity || !updatedItem.price) {
+    return alert("Please fill all fields.");
+  }
 
   await fetch(`/api/items/${id}`, {
     method: 'PUT',
@@ -83,5 +88,14 @@ updateForm.addEventListener('submit', async (e) => {
   });
 
   updateModal.classList.add('hidden');
+  clearUpdateForm();
   location.reload();
 });
+
+function clearUpdateForm() {
+  document.getElementById('updateId').value = '';
+  document.getElementById('updateName').value = '';
+  document.getElementById('updateQuantity').value = '';
+  document.getElementById('updatePrice').value = '';
+  document.getElementById('updateCategory').value = '';
+}
